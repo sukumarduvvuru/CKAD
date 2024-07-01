@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: holy-api
+  name: holy-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: holy-api
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: holy-api
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+status: {}

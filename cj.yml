@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  creationTimestamp: null
+  name: data-backup
+spec:
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+      name: data-backup
+    spec:
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - command:
+            - echo
+            - Running backup task
+            image: busybox
+            name: data-backup
+            resources: {}
+          restartPolicy: OnFailure
+  schedule: 0 2 * * *
+  successfulJobsHistoryLimit: 5
+status: {}

@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: app-container
+  name: app-container
+spec:
+  volumes:
+  - name: myvol
+    emptyDir: {}
+  containers:
+  - image: nginx:1.21.1
+    name: nginx-container
+  - image: busybox
+    name: sidecar-container
+    command: ["/bin/sh","-c",'echo "Sidecar container running"']
+    volumeMounts:
+    - name: myvol
+      mountPath: /var/www/html
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

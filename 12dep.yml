@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: earth-project-earthflower-pvc
+  name: earth-project-earthflower-pvc
+  namespace: earth
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: earth-project-earthflower-pvc
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: earth-project-earthflower-pvc
+    spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: earth-project-earthflower-pvc
+      containers:
+      - image: httpd:2.4.41-alpine
+        name: httpd
+        volumeMounts:
+        - name: data
+          mountPath: /tmp/project-data
+        resources: {}
+status: {}

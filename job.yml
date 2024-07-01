@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  creationTimestamp: null
+  name: batch-job
+spec:
+  completions: 5
+  parallelism: 5
+  template:
+    metadata:
+      creationTimestamp: null
+    spec:
+      containers:
+      - command:
+        - echo
+        - Hello from batch job
+        image: busybox
+        name: batch-job
+        resources: {}
+      restartPolicy: Never
+status: {}

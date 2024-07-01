@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx
+  name: nginx
+  namespace: moon
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    env:
+      - name: USER
+        valueFrom:
+          secretKeyRef:
+            name: secret1
+            key: user
+      - name: PASS
+        valueFrom:
+          secretKeyRef:
+            name: secret1
+            key: pass
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
